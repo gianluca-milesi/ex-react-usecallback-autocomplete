@@ -1,6 +1,3 @@
-import { memo } from "react"
-
-
 function ItemCard({ name = "", description = "" }) {
     return (
         <div className="card">
@@ -10,4 +7,4 @@ function ItemCard({ name = "", description = "" }) {
     )
 }
 
-export default memo(ItemCard)
+export default ItemCard
