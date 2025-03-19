@@ -26,12 +26,31 @@ img {
 
 
 /* Dropdown */
-.drop-down-menu {
-  background-color: rgb(199, 199, 199);
-  padding: 1rem;
+.dropdown-menu {
+  background-color: rgb(250, 250, 250);
+  border-radius: 0 0 20px 20px;
   cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  max-height: 35vh;
+  overflow: auto;
 }
 
-.drop-down-menu li:hover {
-  scale: 1.025;
+.dropdown-menu li {
+  transition: 0.2s;
+}
+
+.dropdown-menu li:not(:last-child) {
+  border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+.dropdown-menu li:hover {
+  font-size: 16.5px;
+  color: rgb(150, 150, 150);
+  background-color: rgb(239, 239, 239);
+}
+
+
+/* Card */
+.card {
+  padding: 0.5rem 1rem;
 }

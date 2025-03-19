@@ -8,7 +8,6 @@ function ItemsList({ items = [], setSearch = () => { } }) {
         return items.map(i => (
             <li key={i.id} onClick={() => setSearch(i.name)}>
                 <ItemCard name={i.name} description={i.description} />
-                <hr />
             </li>
         ))
     }, [items, setSearch])
