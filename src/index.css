@@ -23,3 +23,15 @@ a {
 img {
   max-width: 100%;
 }
+
+
+/* Dropdown */
+.drop-down-menu {
+  background-color: rgb(199, 199, 199);
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.drop-down-menu li:hover {
+  scale: 1.025;
+}
