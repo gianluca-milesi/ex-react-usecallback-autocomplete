@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react"
-import ItemCard from "./components/ItemCard"
+import ItemsList from "./components/ItemsList"
 
 
 function App() {
@@ -24,26 +24,13 @@ function App() {
     fetchItems()
   }, [search])
 
-  const memoizedItems = useMemo(() => {
-    return items.map(i => (
-      <li key={i.id} onClick={() => setSearch(i.name)}>
-        <ItemCard name={i.name} description={i.description} />
-        <hr />
-      </li>
-    ));
-  }, [items])
-
 
   return (
     <main>
       <section className="search-items">
         <h2>Cerca su Amazon</h2>
         <input type="text" value={search} onChange={e => setSearch(e.target.value)} />
-        {search === "" ? "" :
-          <div className="drop-down-menu">
-            <ul>{memoizedItems}</ul>
-          </div>
-        }
+        {search === "" ? "" : <ItemsList items={items} setSearch={setSearch} />}
       </section>
 
     </main>
