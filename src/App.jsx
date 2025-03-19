@@ -48,9 +48,19 @@ function App() {
   }, [search, debounceFetchItems])
 
   async function fetchItem(id) {
-    const response = await fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/products/${id}`)
-    const data = await response.json()
-    setItem(data)
+    try {
+      setIsLoading(true)
+      const response = await fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/products/${id}`)
+      if (!response.ok) {
+        throw new Error("API Error")
+      }
+      const data = await response.json()
+      setItem(data)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   function showItemCard(id) {
@@ -83,9 +93,10 @@ function App() {
 
       <section className="item-details">
         <h2>Dettagli prodotto</h2>
-        {item && (<ItemCard name={item.name} description={item.description} price={item.price} image={item.image} />)}
+        {isLoading ? (<p style={{ padding: "1rem" }}>Caricamento...</p>
+        ) : (
+          item && <ItemCard name={item.name} description={item.description} price={item.price} image={item.image} />)}
       </section>
-
     </main>
   )
 }
