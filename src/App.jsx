@@ -19,7 +19,6 @@ function App() {
   const [item, setItem] = useState(null)
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [showItem, setShowItem] = useState(false)
 
   async function fetchItems(query) {
     try {
@@ -56,7 +55,6 @@ function App() {
 
   function showItemCard(id) {
     fetchItem(id)
-    setShowItem(true)
     setSearch("")
     setItems([])
   }
@@ -85,7 +83,7 @@ function App() {
 
       <section className="item-details">
         <h2>Dettagli prodotto</h2>
-        {showItem && item && (<ItemCard name={item.name} description={item.description} price={item.price} image={item.image} />)}
+        {item && (<ItemCard name={item.name} description={item.description} price={item.price} image={item.image} />)}
       </section>
 
     </main>
