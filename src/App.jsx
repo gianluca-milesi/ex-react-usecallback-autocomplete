@@ -56,17 +56,13 @@ function App() {
       }
       const data = await response.json()
       setItem(data)
+      setSearch("")
+      setItems([])
     } catch (err) {
       console.error(err)
     } finally {
       setIsLoading(false)
     }
-  }
-
-  function showItemCard(id) {
-    fetchItem(id)
-    setSearch("")
-    setItems([])
   }
 
 
@@ -81,7 +77,7 @@ function App() {
             ) : (
               <ul>
                 {items.map(i => (
-                  <li key={i.id} onClick={() => showItemCard(i.id)}>
+                  <li key={i.id} onClick={() => fetchItem(i.id)}>
                     <ItemSuggestion name={i.name} description={i.description} />
                   </li>
                 ))}
