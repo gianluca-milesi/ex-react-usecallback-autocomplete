@@ -1,8 +1,13 @@
-function ItemCard({ name = "", description = "" }) {
+function ItemCard({ name, description, price, image }) {
+
     return (
         <div className="card">
-            <h3>{name}</h3>
-            <p>{description}</p>
+            <img src={image} />
+            <div className="card-body">
+                <h4>{name}</h4>
+                <p>{description}</p>
+                <p>{price}</p>
+            </div>
         </div>
     )
 }

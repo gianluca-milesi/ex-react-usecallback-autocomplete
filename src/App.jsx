@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
-import ItemsList from "./components/ItemsList"
+import ItemSuggestion from "./components/ItemSuggestion"
+import ItemCard from "./components/ItemCard"
 
 function debounce(callback, delay) {
   let timeout
@@ -15,8 +16,10 @@ function debounce(callback, delay) {
 function App() {
 
   const [items, setItems] = useState([])
+  const [item, setItem] = useState(null)
   const [search, setSearch] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [showItem, setShowItem] = useState(false)
 
   async function fetchItems(query) {
     try {
@@ -45,6 +48,19 @@ function App() {
     }
   }, [search, debounceFetchItems])
 
+  async function fetchItem(id) {
+    const response = await fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/products/${id}`)
+    const data = await response.json()
+    setItem(data)
+  }
+
+  function showItemCard(id) {
+    fetchItem(id)
+    setShowItem(true)
+    setSearch("")
+    setItems([])
+  }
+
 
   return (
     <main>
@@ -55,10 +71,21 @@ function App() {
           <div className="dropdown-menu">
             {isLoading ? (<p style={{ padding: "1rem" }}>Caricamento...</p>
             ) : (
-              <ItemsList items={items} setSearch={setSearch} />
+              <ul>
+                {items.map(i => (
+                  <li key={i.id} onClick={() => showItemCard(i.id)}>
+                    <ItemSuggestion name={i.name} description={i.description} />
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
         )}
+      </section>
+
+      <section className="item-details">
+        <h2>Dettagli prodotto</h2>
+        {showItem && item && (<ItemCard name={item.name} description={item.description} price={item.price} image={item.image} />)}
       </section>
 
     </main>

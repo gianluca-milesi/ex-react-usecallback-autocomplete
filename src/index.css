@@ -24,6 +24,10 @@ img {
   max-width: 100%;
 }
 
+.item-details {
+  margin-top: 4rem;
+}
+
 
 /* Dropdown */
 .dropdown-menu {
@@ -50,7 +54,21 @@ img {
 }
 
 
-/* Card */
-.card {
+/* ItemsList */
+.item-suggestion {
   padding: 0.5rem 1rem;
+}
+
+
+/* Cards */
+.card {
+  display: flex;
+}
+
+.card img {
+  width: 200px;
+}
+
+.card-body {
+  padding: 1rem;
 }
